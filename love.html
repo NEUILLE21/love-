@@ -1,0 +1,350 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashni</title>
+  <style>
+    :root {
+      --ink: #2b1a1f;
+      --cream: #fff7f1;
+      --rose: #f7b2c4;
+      --berry: #b7375a;
+      --wine: #7a1f3d;
+      --gold: #f1d7b5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Fraunces", "Georgia", "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, #ffe6ee, transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, #ffd7e5, transparent 50%),
+        radial-gradient(800px 600px at 20% 80%, #ffe9d6, transparent 60%),
+        linear-gradient(160deg, #fff4f8, #fffaf3 55%, #fff1f6);
+      min-height: 100vh;
+    }
+
+    .sparkle {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.6) 0 2px, transparent 3px),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.6) 0 2px, transparent 3px),
+        radial-gradient(circle at 35% 75%, rgba(255,255,255,0.45) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 85%, rgba(255,255,255,0.45) 0 2px, transparent 3px);
+      animation: shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.9; }
+    }
+
+    header {
+      text-align: center;
+      padding: 64px 24px 32px;
+    }
+
+    .title {
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+      letter-spacing: 0.02em;
+      margin: 0 0 10px;
+      color: var(--wine);
+    }
+
+    .subtitle {
+      font-family: "Playfair Display", "Georgia", serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      margin: 0 auto;
+      max-width: 760px;
+      color: #5b2d3f;
+    }
+
+    .heart-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: var(--berry);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    main {
+      padding: 24px;
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      display: grid;
+      gap: 28px;
+    }
+
+    .love-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(190, 90, 120, 0.2);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 20px 40px rgba(122, 31, 61, 0.12);
+      backdrop-filter: blur(6px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--wine);
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      line-height: 1.6;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: 1.05rem;
+    }
+
+    .card::after {
+      content: "❤";
+      position: absolute;
+      top: -14px;
+      right: 14px;
+      font-size: 3rem;
+      color: rgba(183, 55, 90, 0.12);
+    }
+
+    .gallery {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    figure {
+      margin: 0;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px dashed rgba(183, 55, 90, 0.3);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 230px;
+    }
+
+    .image-slot {
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      color: #7c4c5b;
+      font-size: 1rem;
+      background:
+        linear-gradient(135deg, rgba(255, 229, 235, 0.7), rgba(255, 244, 236, 0.8));
+      text-align: center;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .image-slot span {
+      display: inline-block;
+      border: 1px dashed rgba(122, 31, 61, 0.4);
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
+    }
+
+    .image-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+
+    figcaption {
+      padding: 14px 16px;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: 1rem;
+      background: #fff;
+      color: #5c2e40;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .timeline li {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.8);
+      border-left: 4px solid var(--berry);
+      box-shadow: 0 12px 24px rgba(122, 31, 61, 0.12);
+    }
+
+    .timeline strong {
+      color: var(--wine);
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 18px;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      color: #6f3a4d;
+    }
+
+    .timer {
+      text-align: center;
+      padding: 24px 20px;
+    }
+
+    .timer h3 {
+      margin: 0 0 10px;
+      color: var(--wine);
+      font-size: 1.6rem;
+    }
+
+    .timer-display {
+      font-family: "Playfair Display", "Georgia", serif;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      color: #5b2d3f;
+      letter-spacing: 0.02em;
+    }
+
+    .timer-sub {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #7a4a5b;
+    }
+
+    @media (max-width: 720px) {
+      header { padding-top: 48px; }
+      .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkle" aria-hidden="true"></div>
+
+  <header>
+    <h1 class="title">Për Ty Dashuria Ime</h1>
+    <p class="subtitle">Couldn't give you a jellycat so i made this permanent remembrance instead</p>
+    <div class="heart-row" aria-hidden="true">
+      <span>❤</span><span>❤</span><span>❤</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card timer" aria-live="polite">
+      <h3>Time Since We Became Us</h3>
+      <div class="timer-display" id="loveTimer">Loading...</div>
+      <div class="timer-sub">Since September 19 at 18:00</div>
+    </section>
+
+    <section class="love-grid">
+      <article class="card">
+        <h3>Why I Love You</h3>
+        <p>I honestly didn't think we would last long, but then i got to know you and seeing how intelligent mature and caring just made me know that you were the one i wanted to marry</p>
+      </article>
+      <article class="card">
+        <h3>My Favorite Memory</h3>
+        <p>My favourite memory is without a doubt and always will be when you gave me your hair tie, that has a real meaning for me, it's not just a hairtie it's a promise, an engagement of sorts.</p>
+      </article>
+      <article class="card">
+        <h3>What You Mean To Me</h3>
+        <p>It's simple really, if i had to tell the whole world that i love you, i would whisper it on your ears because you are without a doubt my whole world.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2 class="title" style="font-size: clamp(2rem, 3.5vw, 3rem);">Our Photos</h2>
+      <div class="gallery">
+        <figure>
+          <div class="image-slot"><img src="firstmet.jpg"></div>
+          <figcaption>The day we met, i would love to go back in time to relive that memory a thousand times</figcaption>
+        </figure>
+        <figure>
+          <div class="image-slot"><img src="smile.png"></div>
+          <figcaption>I would kill for that smile, seeing you smile is what makes me smile</figcaption>
+        </figure>
+        <figure>
+          <div class="image-slot"><img src="eyes.jpg"></div>
+          <figcaption>I could stare at those eyes for an eternity, green reflecting nature and your soul</figcaption>
+        </figure>
+        <figure>
+          <div class="image-slot"><img src="last.jpg"></div>
+          <figcaption>Our last photo together, you hate it but i love it because i get to be next to you in a photo</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>My small message</h3>
+      <ul class="timeline">
+        <li><strong>Morning:</strong> Hope you slept well and don't forget to eat</li>
+        <li><strong>Afternoon:</strong>Hope you ate and you look gorgeous as always</li>
+        <li><strong>Night:</strong> Wish i was there but goodnight </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>I promise...</h3>
+      <p>I promise to always be next to you wether you're happy or sad.</p>
+      <p>I promise to never give up on us no matter how hard things get.</p>
+      <p>I promise to always be honest with you and to always listen to you.</p>
+      <p>I promise to always be your biggest supporter and your best friend.</p>
+      <p>I promise that i will always do my best so we have a great time together.</p>
+      <p>I promise that you will have a really good time with me when we're alone😏</p>
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    Made with love and a lot of freakiness.
+  </footer>
+
+  <script>
+    // Update this date if you need a different year or time zone.
+    const loveStart = new Date("2025-09-19T18:00:00");
+
+    const timerEl = document.getElementById("loveTimer");
+
+    function updateTimer() {
+      const now = new Date();
+      let diffMs = now - loveStart;
+
+      if (diffMs < 0) {
+        timerEl.textContent = "Counting down to our start...";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      timerEl.textContent =
+        `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
